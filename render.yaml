@@ -1,3 +1,6 @@
+# Render Blueprint — EduWow ELMS backend (free tier)
+# Create via: Dashboard → New → Blueprint → pick this repo.
+# Or manually: New → Web Service → connect repo, then match these settings.
 services:
   - type: web
     name: eduwow-elms-api
@@ -10,15 +13,14 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "22.14.0"
+      # Set these two in the Render dashboard (do NOT commit real values):
       - key: MONGO_URI
         sync: false
-      - key: MONGO_DB_NAME
-        value: elms_db
-      - key: PORT
-        value: 10000
-      - key: JWT_SECRET
-        generateValue: true
-      - key: JWT_EXPIRES_IN
-        value: 7d
       - key: CORS_ORIGIN
         sync: false
+      # Non-secret defaults (safe to commit):
+      - key: MONGO_DB_NAME
+        value: elms_db
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      # Render injects PORT automatically — do not override.
